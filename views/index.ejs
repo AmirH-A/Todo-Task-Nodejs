@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="css/bootstrap.css" />
+        <link rel="stylesheet" href="css/font-awesome.css" />
+        <title><%= pageTitle %></title>
+    </head>
+    <body>
+        <div class="form-group">
+            <h1>Todos</h1>
+            <form
+                action="/admin/add-todo"
+                role="form"
+                class="row w-50 justify-content-center mx-auto"
+                method="POST"
+            >
+                <div class="input-group">
+                    <input
+                        type="text"
+                        name="todo"
+                        class="form-control w-50"
+                        placeholder="Work today"
+                    />
+                    <div class="input-group-prepend">
+                        <button type="submit" class="btn btn-primary fa fa-plus h-100"/>
+                    </div>
+                </div>
+            </form>
+            <div class="mx-auto w-50 mb-3 alert alert-primary row">
+                <p class="d-inline col">The work done: <span class="badge badge-success badge-pill">0<!-- CompletedTodos --></span></p>
+                <p class="d-inline col">Remaining work today: <span class="badge badge-warning badge-pill">0<!-- RemainingTodos --></span></p>
+            </div>
+            <% if(todo.length > 0) { %> 
+                <ul class="list-unstyled" id="todo">
+                    <% for(let t of todo) { %> 
+                        <li>
+                            <div class="alert alert-secondary">
+                                <%= t.text %> 
+                                <a href="#" class="close fa fa-trash" style="color: red"></a>
+                                <a href="#" class="close fa fa-check-square mrr-2" style="color: green"></a>
+                            </div>
+                        </li>
+                    <% } %> 
+                </ul>
+            <% } else { %> 
+                <div class="alert alert-warning w-50 mx-auto" role="alert">
+                    <h4 class="alert-heading">There is nothing to do today</h4>
+                    <p>You can write your work today to record for you</p>
+                </div>
+            <% } %> 
+        </div>
+    </body>
+</html>
